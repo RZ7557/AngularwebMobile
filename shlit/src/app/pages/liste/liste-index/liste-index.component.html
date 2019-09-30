@@ -1,1 +1,11 @@
-<p>liste-index works!</p>
+<p>liste des index</p>
+<div class="alert alert-danger">
+il est : {{dateCourant | date : 'hh:mm:ss dd/MM/yyyy'}} <br>
+</div>
+
+les nombres son:
+
+<ul>
+<li *ngFor='let l  of listnumber'>{{l}}</li>
+
+</ul>

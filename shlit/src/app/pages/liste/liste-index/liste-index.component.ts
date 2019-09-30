@@ -12,4 +12,7 @@ export class ListeIndexComponent implements OnInit {
   ngOnInit() {
   }
 
+  dateCourant = new Date();
+  listnumber= [2,3,6,9];
+
 }

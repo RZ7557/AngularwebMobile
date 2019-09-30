@@ -8,6 +8,9 @@ var app = express_1["default"]();
 app.get('/', function (req, res) {
     res.send("salut");
 });
+app.get('/kelheureestil', function (req, res) {
+    res.send(new Date());
+});
 app.listen(4201, function () {
     console.log("le port est ouvert");
 });
