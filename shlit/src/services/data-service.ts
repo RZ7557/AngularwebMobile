@@ -8,4 +8,5 @@ import { Guid } from 'guid-typescript';
 export abstract class DataService {
   abstract getListes(): Promise<Liste[]>;
   abstract getListe(id: Guid): Promise<Liste>;
+  abstract addItemToList(id: Guid, libelle: string): Promise<void>;
 }

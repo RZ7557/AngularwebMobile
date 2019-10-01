@@ -18,6 +18,16 @@ export class ListeDetailsComponent implements OnInit {
 
   liste: Liste = undefined;
   error: string = undefined;
+
+  addItem(libelle: string) {
+    this.service.addItemToList(this.liste.id, libelle).then(() => {
+      alert('Terminé');
+    });
+  }
+
+
+
+
   //sync ngOnInit() {  ---> asi try avec await
   async ngOnInit() {
     var id = this.activatedRoute.snapshot.params.id;

@@ -1,5 +1,5 @@
 import { Guid } from 'guid-typescript';
-import { ListItem } from './liste-item';
+import { ListeItem } from './liste-item';
 export class Liste {
   constructor(o: any) {
     this.id = Guid.create();
@@ -19,5 +19,5 @@ export class Liste {
   description: string;
   dateCreation: Date;
   nbItemsMax = 10;
-  items: ListItem[];
+  items: ListeItem[]=[];
 }

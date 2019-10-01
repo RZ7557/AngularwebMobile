@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { Liste } from 'src/model/liste';
 import { Guid } from 'guid-typescript';
 import { DataService } from './data-service';
+import { ListeItem } from 'src/model/liste-item';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,22 @@ export class DataDurService extends DataService {
       theme: 'Alimentation'
     })
   ];
+  addItemToList(id: Guid, libelle: string): Promise<void> {
+    // je cherche la liste
+    var liste = this.listeDeListe.find(l => l.id.equals(id));
+    if (!liste) {
+      // Si pas trouvée, je rejete la promesse
+      return Promise.reject(new Error("La liste n'existe pas"));
+    }
+    // Je crée le nouveau ListeItem
+    var nouvelItem = new ListeItem();
+    nouvelItem.libelle = libelle;
+
+    // Je l'ajoute à la liste
+    liste.items.push(nouvelItem);
+    // Je déclare que la promesse est tenue;
+    return Promise.resolve();
+  }
   getListes(): Promise<Liste[]> {
     // cette fonction renvoit une promesse
     // qui renvoit la liste des listes

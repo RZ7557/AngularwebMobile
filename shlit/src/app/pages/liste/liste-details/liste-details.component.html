@@ -1,6 +1,22 @@
 <div *ngIf="liste">
   <h3>Liste : {{ liste.libelle }}</h3>
   Description : {{ liste.description }}
+  <div *ngIf="liste.items.length > 0">
+    <h4>Items</h4>
+    <ul>
+      <li *ngFor="let item of liste.items">{{ item.libelle }}</li>
+    </ul>
+  </div>
+
+
+  <!-- # pour poiter comme reference textlibelle comme ca on peur faire textlibelle.value-->
+  <div>
+    <input
+      (keyup.enter)="addItem(textLibelle.value)"
+      #textLibelle
+      type="text"
+    />
+  </div>
 </div>
 <div *ngIf="!liste && !error">
   En attente de données
