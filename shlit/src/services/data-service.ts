@@ -6,7 +6,8 @@ import { Guid } from 'guid-typescript';
   providedIn: 'root'
 })
 export abstract class DataService {
+  abstract removeItemFromListe(idItem: Guid, idListe: Guid): Promise<void>;
   abstract getListes(): Promise<Liste[]>;
   abstract getListe(id: Guid): Promise<Liste>;
-  abstract addItemToList(id: Guid, libelle: string): Promise<void>;
+  abstract addItemToListe(id: Guid, libelle: string): Promise<void>;
 }

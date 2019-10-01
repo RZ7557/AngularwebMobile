@@ -1,26 +1,43 @@
 <div *ngIf="liste">
-  <h3>Liste : {{ liste.libelle }}</h3>
-  Description : {{ liste.description }}
-  <div *ngIf="liste.items.length > 0">
-    <h4>Items</h4>
-    <ul>
-      <li *ngFor="let item of liste.items">{{ item.libelle }}</li>
-    </ul>
-  </div>
+    <h3>Liste : {{ liste.libelle }}</h3>
+    Description : {{ liste.description }}
+    <div *ngIf="liste.items.length > 0">
+      <h4>Items</h4>
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let item of liste.items">
+            <td>{{ item.libelle }}</td>
+            <td>
+              <button
+                class="btn"
+                [class.btn-primary]="!item.valide"
+                [class.btn-success]="item.valide"
+                (click)="toogleItemValidation(item)"
+              >
+                X
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="removeItem(item.id)">
+                X
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-
-  <!-- # pour poiter comme reference textlibelle comme ca on peur faire textlibelle.value-->
-  <div>
-    <input
-      (keyup.enter)="addItem(textLibelle.value)"
-      #textLibelle
-      type="text"
-    />
+    <div>
+      <input
+        (keyup.enter)="addItem(textLibelle.value)"
+        #textLibelle
+        type="text"
+      />
+    </div>
   </div>
-</div>
-<div *ngIf="!liste && !error">
-  En attente de données
-</div>
-<div *ngIf="error">
-  {{ error }}
-</div>
+  <div *ngIf="!liste && !error">
+    En attente de données
+  </div>
+  <div *ngIf="error">
+    {{ error }}
+  </div>

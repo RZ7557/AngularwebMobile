@@ -5,6 +5,7 @@ import { Guid } from 'guid-typescript';
 import { Liste } from 'src/model/liste';
 import { DataService } from 'src/services/data-service';
 
+
 @Component({
   selector: 'app-liste-details',
   templateUrl: './liste-details.component.html',
@@ -20,15 +21,17 @@ export class ListeDetailsComponent implements OnInit {
   error: string = undefined;
 
   addItem(libelle: string) {
-    this.service.addItemToList(this.liste.id, libelle).then(() => {
-      alert('Terminé');
+    this.service.addItemToListe(this.liste.id, libelle).then(() => {
+      console.log('Terminé');
     });
   }
 
+  removeItem(id: Guid) {
+    this.service.removeItemFromListe(id, this.liste.id).then(() => {
+      console.log('Terminé');
+    });
+  }
 
-
-
-  //sync ngOnInit() {  ---> asi try avec await
   async ngOnInit() {
     var id = this.activatedRoute.snapshot.params.id;
     var guid = Guid.parse(id);
