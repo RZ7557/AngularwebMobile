@@ -36,6 +36,14 @@ export class DataDurService extends DataService {
     });
   }
   getListe(id: Guid): Promise<Liste> {
-    throw new Error('Method not implemented.');
+    // Recherche de la liste dans le tableau
+    const listeCherchee = this.listeDeListe.find(l => l.id.equals(id));
+    if (listeCherchee) {
+      // Si trouvee, on résoud la promesse
+      return Promise.resolve(listeCherchee);
+    } else {
+      // La promesse est rejetée
+      return Promise.reject(new Error("La liste n'existe pas"));
+    }
   }
 }
