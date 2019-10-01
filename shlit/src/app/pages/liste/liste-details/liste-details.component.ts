@@ -17,15 +17,26 @@ export class ListeDetailsComponent implements OnInit {
   ) {}
 
   liste: Liste = undefined;
-
-  ngOnInit() {
+  error: string = undefined;
+  //sync ngOnInit() {  ---> asi try avec await
+  async ngOnInit() {
     var id = this.activatedRoute.snapshot.params.id;
     var guid = Guid.parse(id);
     // je demande la liste au service
-    this.service.getListe(guid).then(resultat => {
-      // Quand la liste est là (promesse résolue)
-      // Je la mets dans la propriété liste de mon component
-      this.liste = resultat;
-    });
+    this.service
+      .getListe(guid)
+      .then(resultat => {
+        // Quand la liste est là (promesse résolue)
+        // Je la mets dans la propriété liste de mon component
+        this.liste = resultat;
+      })
+      .catch(e => {
+        this.error = e.message;
+      });
+    // try {
+    //   this.liste = await this.service.getListe(id);
+    // } catch (error) {
+    //   this.error = error.message;
+    // }
   }
 }
