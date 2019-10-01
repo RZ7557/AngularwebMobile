@@ -5,7 +5,10 @@ il est : {{dateCourant | date : 'hh:mm:ss dd/MM/yyyy'}} <br>
 
 les nombres son:
 
+voici les {{listeDeListe.length}} listes
 <ul>
-<li *ngFor='let l  of listnumber'>{{l}}</li>
-
+  <li *ngFor="let liste of listeDeListe"
+  routerLink="/liste/details/{{ liste.id }}"
+  >{{ liste.libelle }}</li>
 </ul>
+

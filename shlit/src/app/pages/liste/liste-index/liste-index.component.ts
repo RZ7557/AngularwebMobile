@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { List } from 'src/model/list';
 
 @Component({
   selector: 'app-liste-index',
@@ -6,13 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liste-index.component.scss']
 })
 export class ListeIndexComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  // La date courante est "calculée" ici, et cosommée
+  // Dans le template html
 
-  ngOnInit() {
-  }
+  dateCourante = new Date();
 
-  dateCourant = new Date();
-  listnumber= [2,3,6,9];
+  listeDeListe: List[] = [
+    new List({
+      libelle: 'Les merveilles du monde',
+      nbItemsMax: 20,
+      theme: 'Géographie'
+    }),
+    new List({
+      libelle: 'Les meilleurs fromages',
+      nbItemsMax: 20,
+      theme: 'Alimentation'
+    }),
+    new List({
+      libelle: 'Les meilleurs chocolats',
+      nbItemsMax: 10,
+      theme: 'Alimentation'
+    })
+  ];
+  mavar = 1;
 
+  ngOnInit() {}
 }

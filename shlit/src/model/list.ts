@@ -1,15 +1,23 @@
-import {Guid} from 'guid-typescript'
+import { Guid } from 'guid-typescript';
 import { ListItem } from './list-item';
-export class List{
-  constructor(){
+export class List {
+  constructor(o: any) {
     this.id = Guid.create();
+    this.dateCreation = new Date();
+    // Construction de la liste
+    // basée sur un objet o
+    // dont on copie les propriétés sur this
+    // for (var p in o) {
+    //   this[p] = o[p];
+    // }
+    Object.assign(this, o);
   }
   id: Guid;
-  libelle: 'Nouvelle liste';
+  libelle: string = 'Nouvelle liste';
   theme: string;
   imageUrl: string;
   description: string;
-  datecreation = Date;
-  nbItemMax = 10;
+  dateCreation: Date;
+  nbItemsMax = 10;
   items: ListItem[];
 }
