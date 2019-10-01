@@ -1,14 +1,16 @@
-<p>liste des index</p>
-<div class="alert alert-danger">
-il est : {{dateCourant | date : 'hh:mm:ss dd/MM/yyyy'}} <br>
+
+<h3>Liste des listes pour {{ appName }}</h3>
+<div *ngIf="!listeDeListe">
+  Attendez je cherche
 </div>
-
-les nombres son:
-
-voici les {{listeDeListe.length}} listes
-<ul>
-  <li *ngFor="let liste of listeDeListe"
-  routerLink="/liste/details/{{ liste.id }}"
-  >{{ liste.libelle }}</li>
-</ul>
-
+<div *ngIf="listeDeListe">
+  <p>Voici les {{ listeDeListe.length }} listes</p>
+  <ul>
+    <li
+      *ngFor="let liste of listeDeListe"
+      routerLink="/liste/details/{{ liste.id }}"
+    >
+      {{ liste.libelle }}
+    </li>
+  </ul>
+</div>

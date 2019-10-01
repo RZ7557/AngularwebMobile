@@ -1,6 +1,6 @@
 import { Guid } from 'guid-typescript';
-import { ListItem } from './list-item';
-export class List {
+import { ListItem } from './liste-item';
+export class Liste {
   constructor(o: any) {
     this.id = Guid.create();
     this.dateCreation = new Date();

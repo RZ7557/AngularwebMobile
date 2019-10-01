@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from 'src/model/list';
+
+import { environment } from 'src/environments/environment';
+
+import { Liste } from 'src/model/liste';
+import { DataService } from 'src/services/data-service';
 
 @Component({
   selector: 'app-liste-index',
@@ -7,31 +11,21 @@ import { List } from 'src/model/list';
   styleUrls: ['./liste-index.component.scss']
 })
 export class ListeIndexComponent implements OnInit {
-  constructor() {}
+  constructor(private service: DataService) {}
 
-  // La date courante est "calculée" ici, et cosommée
-  // Dans le template html
+  // A l'instanciation, la listeDeListe est undefined
+  listeDeListe: Liste[];
+  appName = environment.appName;
 
-  dateCourante = new Date();
+  ngOnInit() {
+    // Le getListes renvoit la promesse
 
-  listeDeListe: List[] = [
-    new List({
-      libelle: 'Les merveilles du monde',
-      nbItemsMax: 20,
-      theme: 'Géographie'
-    }),
-    new List({
-      libelle: 'Les meilleurs fromages',
-      nbItemsMax: 20,
-      theme: 'Alimentation'
-    }),
-    new List({
-      libelle: 'Les meilleurs chocolats',
-      nbItemsMax: 10,
-      theme: 'Alimentation'
-    })
-  ];
-  mavar = 1;
-
-  ngOnInit() {}
+    this.service.getListes().then(resultat => {
+      // Quand la promesse est résolue,
+      // On a le résultat (la liste des listes)
+      // et on le met dans this.listeDeListe
+      // la vue affichera les données
+      this.listeDeListe = resultat;
+    });
+  }
 }

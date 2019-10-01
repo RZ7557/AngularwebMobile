@@ -7,6 +7,8 @@ import { ListeCreateComponent } from './pages/liste/liste-create/liste-create.co
 import { ListeDetailsComponent } from './pages/liste/liste-details/liste-details.component';
 import { ListeIndexComponent } from './pages/liste/liste-index/liste-index.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
+import { DataService } from 'src/services/data-service';
+import { DataDurService } from 'src/services/data-dur.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{ provide: DataService, useClass: DataDurService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
