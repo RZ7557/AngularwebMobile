@@ -42,8 +42,10 @@ exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var data_dur_service_1 = require("./services/data-dur.service");
 var guid_typescript_1 = require("guid-typescript");
+var cors_1 = __importDefault(require("cors"));
 var app = express_1["default"]();
 var service = new data_dur_service_1.DataDurService();
+app.use(cors_1["default"]({ origin: 'http://localhost:4200' }));
 app.get('/liste', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, _b;
     return __generator(this, function (_c) {

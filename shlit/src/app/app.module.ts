@@ -4,6 +4,7 @@ import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ListeIndexComponent } from './pages/liste/liste-index/liste-index.component';
@@ -13,6 +14,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { DataDurService } from 'src/services/data-dur.service';
 import { DataService } from 'src/services/data.service';
 import { MessageService } from 'primeng/components/common/messageservice';
+import { DataHttpService } from 'src/services/data-http.service';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,11 @@ import { MessageService } from 'primeng/components/common/messageservice';
     AppRoutingModule,
     ToastModule,
     ProgressSpinnerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
-    { provide: DataService, useClass: DataDurService },
+    { provide: DataService, useClass: DataHttpService },
     MessageService
   ],
   bootstrap: [AppComponent]
