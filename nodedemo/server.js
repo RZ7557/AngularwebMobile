@@ -43,9 +43,11 @@ var express_1 = __importDefault(require("express"));
 var data_dur_service_1 = require("./services/data-dur.service");
 var guid_typescript_1 = require("guid-typescript");
 var cors_1 = __importDefault(require("cors"));
+var body_parser_1 = __importDefault(require("body-parser"));
 var app = express_1["default"]();
 var service = new data_dur_service_1.DataDurService();
 app.use(cors_1["default"]({ origin: 'http://localhost:4200' }));
+// Liste les listes
 app.get('/liste', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, _b;
     return __generator(this, function (_c) {
@@ -59,6 +61,7 @@ app.get('/liste', function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); });
+// détail d'une liste
 app.get('/liste/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, _a, _b;
     return __generator(this, function (_c) {
@@ -71,6 +74,19 @@ app.get('/liste/:id', function (req, res) { return __awaiter(void 0, void 0, voi
                 _b.apply(_a, [_c.sent()]);
                 return [2 /*return*/];
         }
+    });
+}); });
+app.use(body_parser_1["default"].json());
+app.post('/liste/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, newItem;
+    return __generator(this, function (_a) {
+        id = req.params.id;
+        newItem = req.body;
+        // J'utilise mon service DataDur pour ajouter l'item
+        service.addItemToListe(guid_typescript_1.Guid.parse(id), newItem.libelle);
+        // Je termine la requete
+        res.send();
+        return [2 /*return*/];
     });
 }); });
 app.listen(4201, function () {

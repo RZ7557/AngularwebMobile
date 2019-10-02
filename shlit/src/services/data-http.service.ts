@@ -57,7 +57,6 @@ export class DataHttpService extends DataService {
           return l;
         })
     );
-
   }
   addItemToListe(id: Guid, libelle: string): Promise<void> {
     throw new Error('Method not implemented.');
