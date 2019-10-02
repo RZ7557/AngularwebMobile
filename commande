@@ -5,3 +5,12 @@ npm install -g typescript
 npm install @types/express
 tsc --watch
 node server
+
+
+seveur:
+
+tsc --watch 
++ avec une autre fentre la commande 
+nodemon server   ---> le nom du serveur(server)
+
+client:
