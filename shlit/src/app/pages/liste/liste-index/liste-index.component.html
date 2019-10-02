@@ -1,7 +1,6 @@
-
 <h3>Liste des listes pour {{ appName }}</h3>
 <div *ngIf="!listeDeListe">
-  Attendez je cherche
+    <p-progressSpinner></p-progressSpinner>
 </div>
 <div *ngIf="listeDeListe">
   <p>Voici les {{ listeDeListe.length }} listes</p>

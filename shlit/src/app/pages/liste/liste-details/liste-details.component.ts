@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Guid } from 'guid-typescript';
-
+import { DataService } from 'src/services/data.service';
 import { Liste } from 'src/model/liste';
-import { DataService } from 'src/services/data-service';
-
+import { ListeItem } from 'src/model/liste-item';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-liste-details',
@@ -14,21 +14,33 @@ import { DataService } from 'src/services/data-service';
 export class ListeDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
-    private service: DataService
+    private service: DataService,
+    private messageService: MessageService
   ) {}
 
   liste: Liste = undefined;
   error: string = undefined;
 
+  toogleItemValidation(item: ListeItem) {
+    this.service.validateItemFromList(item.id, this.liste.id, !item.valide);
+  }
   addItem(libelle: string) {
     this.service.addItemToListe(this.liste.id, libelle).then(() => {
-      console.log('Terminé');
+      this.messageService.add({
+        severity: 'success',
+        summary: "L'item est ajouté",
+        detail: 'Bravo'
+      });
     });
   }
 
   removeItem(id: Guid) {
     this.service.removeItemFromListe(id, this.liste.id).then(() => {
-      console.log('Terminé');
+      this.messageService.add({
+        severity: 'warn',
+        summary: "L'item a été supprimé",
+        detail: 'Bravo'
+      });
     });
   }
 

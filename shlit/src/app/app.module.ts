@@ -1,28 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { AppComponent } from './app.component';
+import { ListeIndexComponent } from './pages/liste/liste-index/liste-index.component';
 import { ListeCreateComponent } from './pages/liste/liste-create/liste-create.component';
 import { ListeDetailsComponent } from './pages/liste/liste-details/liste-details.component';
-import { ListeIndexComponent } from './pages/liste/liste-index/liste-index.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
-import { DataService } from 'src/services/data-service';
 import { DataDurService } from 'src/services/data-dur.service';
+import { DataService } from 'src/services/data.service';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ListeIndexComponent,
     ListeCreateComponent,
     ListeDetailsComponent,
-    ListeIndexComponent,
     AccueilComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastModule,
+    ProgressSpinnerModule,
+    BrowserAnimationsModule
   ],
-  providers: [{ provide: DataService, useClass: DataDurService }],
+  providers: [
+    { provide: DataService, useClass: DataDurService },
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

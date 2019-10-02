@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { DataService } from './data.service';
 import { Liste } from 'src/model/liste';
 import { Guid } from 'guid-typescript';
 import { ListeItem } from 'src/model/liste-item';
-import { DataService } from './data-service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,24 @@ export class DataDurService extends DataService {
     })
   ];
 
+  validateItemFromList(
+    idItem: Guid,
+    idListe: Guid,
+    valide: boolean
+  ): Promise<void> {
+    var liste = this.listeDeListe.find(l => l.id.equals(idListe));
+    if (!liste) {
+      // Si pas trouvée, je rejete la promesse
+      return Promise.reject(new Error("La liste n'existe pas"));
+    }
+    var item = liste.items.find(i => i.id.equals(idItem));
+    if (!item) {
+      // Si pas trouvée, je rejete la promesse
+      return Promise.reject(new Error("L'item n'est pas dans la liste"));
+    }
+    item.valide = valide;
+    return Promise.resolve();
+  }
   removeItemFromListe(idItem: Guid, idListe: Guid): Promise<void> {
     var liste = this.listeDeListe.find(l => l.id.equals(idListe));
     if (!liste) {

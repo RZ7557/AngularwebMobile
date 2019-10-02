@@ -6,9 +6,11 @@ import { Guid } from 'guid-typescript';
   providedIn: 'root'
 })
 export abstract class DataService {
-  deleteItemFromListe(id: Guid) {
-    throw new Error("Method not implemented.");
-  }
+  abstract validateItemFromList(
+    idItem: Guid,
+    idListe: Guid,
+    valide: boolean
+  ): Promise<void>;
   abstract removeItemFromListe(idItem: Guid, idListe: Guid): Promise<void>;
   abstract getListes(): Promise<Liste[]>;
   abstract getListe(id: Guid): Promise<Liste>;

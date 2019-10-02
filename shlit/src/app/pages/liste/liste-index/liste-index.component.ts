@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
-
+import { DataService } from 'src/services/data.service';
 import { Liste } from 'src/model/liste';
-import { DataService } from 'src/services/data-service';
 
 @Component({
   selector: 'app-liste-index',

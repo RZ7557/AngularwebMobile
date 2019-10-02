@@ -21,6 +21,8 @@
     "@angular/router": "~8.2.5",
     "bootstrap": "^4.2.1",
     "guid-typescript": "^1.0.9",
+    "install": "^0.13.0",
+    "primeng": "^8.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

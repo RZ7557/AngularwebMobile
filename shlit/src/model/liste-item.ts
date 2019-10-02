@@ -8,4 +8,5 @@ export class ListeItem {
   id: Guid;
   libelle: string;
   dateCreation: Date;
+  valide = false;
 }
