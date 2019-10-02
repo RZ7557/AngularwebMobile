@@ -59,6 +59,8 @@ export class DataHttpService extends DataService {
     );
   }
   addItemToListe(id: Guid, libelle: string): Promise<void> {
-    throw new Error('Method not implemented.');
+    return this.httpClient
+      .post<void>('http://localhost:4201/liste/' + id.toString(), { libelle })
+      .toPromise();
   }
 }

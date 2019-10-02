@@ -74,19 +74,6 @@ export class DataDurService extends DataService {
     // Je déclare que la promesse est tenue
     return Promise.resolve();
   }
-// methode 1
-  /*getListes(): Promise<Liste[]> {
-    // cette fonction renvoit une promesse
-    // qui renvoit la liste des listes
-    // Au bout de 2 secondes
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.listeDeListe);
-      }, 2000);
-    });
-  }*/
-
-  //methode 2 (envois moin de data que id et libelle)
   getListes(): Promise<any[]> {
     // cette fonction renvoit une promesse
     // qui renvoit la liste des listes
@@ -104,7 +91,6 @@ export class DataDurService extends DataService {
       }, 2000);
     });
   }
-
   getListe(id: Guid): Promise<Liste> {
     // Recherche de la liste dans le tableau
     const listeCherchee = this.listeDeListe.find(l => l.id.equals(id));

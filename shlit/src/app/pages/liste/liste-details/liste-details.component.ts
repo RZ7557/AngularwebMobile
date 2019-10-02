@@ -24,14 +24,15 @@ export class ListeDetailsComponent implements OnInit {
   toogleItemValidation(item: ListeItem) {
     this.service.validateItemFromList(item.id, this.liste.id, !item.valide);
   }
-  addItem(libelle: string) {
-    this.service.addItemToListe(this.liste.id, libelle).then(() => {
-      this.messageService.add({
-        severity: 'success',
-        summary: "L'item est ajouté",
-        detail: 'Bravo'
-      });
+  async addItem(libelle: string) {
+    await this.service.addItemToListe(this.liste.id, libelle);
+    // this.liste.items.push(new ListeItem({ libelle }));
+    this.messageService.add({
+      severity: 'success',
+      summary: "L'item est ajouté",
+      detail: 'Bravo'
     });
+    this.liste = await this.service.getListe(this.liste.id);
   }
 
   removeItem(id: Guid) {

@@ -84,18 +84,6 @@ var DataDurService = /** @class */ (function (_super) {
         // Je déclare que la promesse est tenue
         return Promise.resolve();
     };
-    // methode 1
-    /*getListes(): Promise<Liste[]> {
-      // cette fonction renvoit une promesse
-      // qui renvoit la liste des listes
-      // Au bout de 2 secondes
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(this.listeDeListe);
-        }, 2000);
-      });
-    }*/
-    //methode 2 (envois moin de data que id et libelle)
     DataDurService.prototype.getListes = function () {
         var _this = this;
         // cette fonction renvoit une promesse

@@ -36,7 +36,7 @@
   </div>
 </div>
 <div *ngIf="!liste && !error">
-  En attente de données
+  <p-progressSpinner></p-progressSpinner>
 </div>
 <div *ngIf="error">
   {{ error }}

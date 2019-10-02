@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DataService } from 'src/services/data.service';
 import { Liste } from 'src/model/liste';
+import { DataDurService } from 'src/services/data-dur.service';
 
 @Component({
   selector: 'app-liste-index',
