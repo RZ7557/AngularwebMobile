@@ -47,16 +47,22 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var app = express_1["default"]();
 var service = new data_dur_service_1.DataDurService();
 app.use(cors_1["default"]({ origin: 'http://localhost:4200' }));
-// Liste les listes
+// Liste les listes 5DTO ne pas transferet tou les propirete
 app.get('/liste', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
-            case 0:
-                _b = (_a = res).send;
-                return [4 /*yield*/, service.getListes()];
+    var listes, resultats;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, service.getListes()];
             case 1:
-                _b.apply(_a, [_c.sent()]);
+                listes = _a.sent();
+                resultats = listes.map(function (l) {
+                    return {
+                        id: l.id.toString(),
+                        lbl: l.libelle,
+                        nbi: l.items.length
+                    };
+                });
+                res.send(resultats);
                 return [2 /*return*/];
         }
     });

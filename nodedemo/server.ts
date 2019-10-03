@@ -9,9 +9,17 @@ const service = new DataDurService();
 
 app.use(cors({ origin: 'http://localhost:4200' }));
 
-// Liste les listes
+// Liste les listes 5DTO ne pas transferet tou les propirete
 app.get('/liste', async (req, res) => {
-  res.send(await service.getListes());
+  var listes = await service.getListes();
+  var resultats = listes.map(l => {
+    return {
+      id: l.id.toString(),
+      lbl: l.libelle,
+      nbi: l.items.length
+    };
+  });
+  res.send(resultats);
 });
 
 // détail d'une liste
