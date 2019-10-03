@@ -19,7 +19,14 @@ export class DataHttpService extends DataService {
     throw new Error('Method not implemented.');
   }
   removeItemFromListe(idItem: Guid, idListe: Guid): Promise<void> {
-    throw new Error('Method not implemented.');
+    return this.httpClient
+      .delete<void>(
+        'http://localhost:4201/liste/' +
+          idListe.toString() +
+          '/item/' +
+          idItem.toString()
+      )
+      .toPromise();
   }
   getListes(): Promise<Liste[]> {
     return (
@@ -29,13 +36,15 @@ export class DataHttpService extends DataService {
         // Crée une promesse avec le resultat
         // Le resultat est un tableau
         .toPromise()
-        // Crée une nouvelle promesse avec un tableau de liste
+        // Crée une nouvelle promesse avec un tableau de dto
+        // {"id":"f6bd8aea-e391-0f3b-40aa-32b5890f9b7d","lbl":"Les merveilles du monde","nbi":0}
+        // `${dto.lbl} (${dto.nbi})` = dto.lbl +'('+dto.nbi+')'
         .then(tab =>
           tab.map(
-            e =>
+            dto =>
               new Liste({
-                id: Guid.parse(e.id.value),
-                libelle: e.libelle
+                id: Guid.parse(dto.id),
+                libelle: `${dto.lbl} (${dto.nbi})`
               })
           )
         )
