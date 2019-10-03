@@ -4,6 +4,7 @@ import { Guid } from 'guid-typescript';
 import { Liste } from 'src/model/liste';
 import { HttpClient } from '@angular/common/http';
 import { ListeItem } from 'src/model/liste-item';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,8 @@ export class DataHttpService extends DataService {
   removeItemFromListe(idItem: Guid, idListe: Guid): Promise<void> {
     return this.httpClient
       .delete<void>(
-        'http://localhost:4201/liste/' +
+        environment.serviceUrl +
+          '/liste/' +
           idListe.toString() +
           '/item/' +
           idItem.toString()
@@ -33,7 +35,7 @@ export class DataHttpService extends DataService {
     return (
       this.httpClient
         // Envois la requête sur le serveur
-        .get<any[]>('http://localhost:4201/liste')
+        .get<any[]>(environment.serviceUrl + '/liste')
         // Crée une promesse avec le resultat
         // Le resultat est un tableau
         .toPromise()
@@ -55,7 +57,7 @@ export class DataHttpService extends DataService {
     return (
       this.httpClient
         // Requete vers le serveur
-        .get<any>(`http://localhost:4201/liste/${id.toString()}`)
+        .get<any>(`${environment}/liste/${id.toString()}`)
         // On obtient la promesse
         .toPromise()
         // On transforme l'objet recu
@@ -85,7 +87,9 @@ export class DataHttpService extends DataService {
   }
   addItemToListe(id: Guid, libelle: string): Promise<void> {
     return this.httpClient
-      .post<void>('http://localhost:4201/liste/' + id.toString(), { libelle })
+      .post<void>(environment.serviceUrl + '/liste/' + id.toString(), {
+        libelle
+      })
       .toPromise();
   }
 }

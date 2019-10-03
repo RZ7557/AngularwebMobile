@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appName: 'Shopping liste'
+  appName: 'Shopping liste',serviceUrl:'http://localhost:4201'
 };
 
 /*

@@ -1,3 +1,4 @@
-export const environment = {
-  production: true
+xport const environment = {
+  production: false,
+  appName: 'Shopping liste', serviceUrl: 'http://www.monservice.com'
 };
