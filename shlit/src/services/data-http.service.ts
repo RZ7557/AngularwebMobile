@@ -3,6 +3,7 @@ import { DataService } from './data.service';
 import { Guid } from 'guid-typescript';
 import { Liste } from 'src/model/liste';
 import { HttpClient } from '@angular/common/http';
+import { ListeItem } from 'src/model/liste-item';
 
 @Injectable({
   providedIn: 'root'
@@ -60,10 +61,25 @@ export class DataHttpService extends DataService {
         // On transforme l'objet recu
         // {"libelle":"Les merveilles du monde","nbItemsMax":20,"items":[],"id":{"value":"b7f40fb3-cbb5-bfe9-77e7-167ef94a185c"},"dateCreation":"2019-10-02T12:00:15.629Z","theme":"Géographie"}
         // En liste avec le constructeur de Liste
-        .then(o => {
-          var l = new Liste(o);
-          l.id = Guid.parse(o.id.value);
-          return l;
+        .then(dto => {
+          return new Liste({
+            id: Guid.parse(dto.id),
+            libelle: dto.lbl,
+            description: dto.d,
+            imageUrl: dto.iurl,
+            nbItemsMax: dto.nim,
+            dateCreation: dto.dc,
+            theme: dto.t,
+            items: dto.items.map(
+              item =>
+                new ListeItem({
+                  id: Guid.parse(item.id),
+                  libelle: item.lbl,
+                  dateCreation: item.dc,
+                  valide: item.v
+                })
+            )
+          });
         })
     );
   }
