@@ -35,14 +35,15 @@ export class ListeDetailsComponent implements OnInit {
     this.liste = await this.service.getListe(this.liste.id);
   }
 
-  removeItem(id: Guid) {
-    this.service.removeItemFromListe(id, this.liste.id).then(() => {
-      this.messageService.add({
-        severity: 'warn',
-        summary: "L'item a été supprimé",
-        detail: 'Bravo'
-      });
+  async removeItem(id: Guid) {
+    await this.service.removeItemFromListe(id, this.liste.id);
+    this.messageService.add({
+      severity: 'warn',
+      summary: "L'item a été supprimé",
+      detail: 'Bravo'
     });
+
+    this.liste = await this.service.getListe(this.liste.id);
   }
 
   async ngOnInit() {
