@@ -14,3 +14,83 @@ tsc --watch
 nodemon server   ---> le nom du serveur(server)
 
 client:
+
+ngserve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================GIT commandes++++++++++++++++++++++++++++
+
+
+git init
+git remote -v
+pour lier un depo local au depot distant:
+git remote add origin git@github.com:Rachidzine/test_sfr_ibkesssh.git
+--------------------------------------------------------------------
+
+pour switcher sue un autre repository:
+λgit remote set-url  origin git@github.com:Rachidzine/angular7.git
+
+
+
+delarer les fichier a ignore pour le push dans le fichier gitgnore saisir les ligne des fichier;
+
+.gitignore
+node_modules
+
+
+verifier ssh:
+
+ssh -T git@bitbucket.org
+commande : 
+git reset HEAD [FILE] ---------------> UNSTAGE
+
+------------------------------------------------------------------------------------------------------------ 
+
+
+html  --> sappuis sur .ts par sont tout il sapuis sur service
+
+==================ANGULAR==============
+ng serve --proxy-config proxy.conf.json
+
+app-routing module -> ajout module
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====================================================
+
+
+npm update
+npm install --save @ng-bootstrap/ng-bootstrap@2.0.0
