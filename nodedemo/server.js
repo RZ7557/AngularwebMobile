@@ -98,6 +98,16 @@ app.get('/liste/:id', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
+app["delete"]('/liste/:idListe/item/:idItem', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var idListe, idItem;
+    return __generator(this, function (_a) {
+        idListe = req.params.idListe;
+        idItem = req.params.idItem;
+        service.removeItemFromListe(guid_typescript_1.Guid.parse(idItem), guid_typescript_1.Guid.parse(idListe));
+        res.send();
+        return [2 /*return*/];
+    });
+}); });
 app.use(body_parser_1["default"].json());
 app.post('/liste/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, newItem;

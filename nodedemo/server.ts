@@ -46,6 +46,13 @@ app.get('/liste/:id', async (req, res) => {
     })
   });
 });
+
+app.delete('/liste/:idListe/item/:idItem', async (req, res) => {
+  var idListe = req.params.idListe;
+  var idItem = req.params.idItem;
+  service.removeItemFromListe(Guid.parse(idItem), Guid.parse(idListe));
+  res.send();
+});
 app.use(bodyParser.json());
 
 app.post('/liste/:id', async (req, res) => {
