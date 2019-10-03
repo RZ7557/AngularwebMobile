@@ -22,12 +22,30 @@ app.get('/liste', async (req, res) => {
   res.send(resultats);
 });
 
+
 // détail d'une liste
 app.get('/liste/:id', async (req, res) => {
   var id = req.params.id;
-  res.send(await service.getListe(Guid.parse(id)));
-});
+  var liste = await service.getListe(Guid.parse(id));
 
+  res.send({
+    id: liste.id.toString(),
+    lbl: liste.libelle,
+    iurl: liste.imageUrl,
+    nim: liste.nbItemsMax,
+    t: liste.theme,
+    dc: liste.dateCreation,
+    d: liste.description,
+    items: liste.items.map(i => {
+      return {
+        id: i.id.toString(),
+        lbl: i.libelle,
+        v: i.valide,
+        dc: i.dateCreation
+      };
+    })
+  });
+});
 app.use(bodyParser.json());
 
 app.post('/liste/:id', async (req, res) => {

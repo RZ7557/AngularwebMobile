@@ -69,15 +69,31 @@ app.get('/liste', function (req, res) { return __awaiter(void 0, void 0, void 0,
 }); });
 // détail d'une liste
 app.get('/liste/:id', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, _a, _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    var id, liste;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
                 id = req.params.id;
-                _b = (_a = res).send;
                 return [4 /*yield*/, service.getListe(guid_typescript_1.Guid.parse(id))];
             case 1:
-                _b.apply(_a, [_c.sent()]);
+                liste = _a.sent();
+                res.send({
+                    id: liste.id.toString(),
+                    lbl: liste.libelle,
+                    iurl: liste.imageUrl,
+                    nim: liste.nbItemsMax,
+                    t: liste.theme,
+                    dc: liste.dateCreation,
+                    d: liste.description,
+                    items: liste.items.map(function (i) {
+                        return {
+                            id: i.id.toString(),
+                            lbl: i.libelle,
+                            v: i.valide,
+                            dc: i.dateCreation
+                        };
+                    })
+                });
                 return [2 /*return*/];
         }
     });
