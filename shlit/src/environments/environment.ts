@@ -1,7 +1,39 @@
-import { DataService } from 'src/services/data.service';
+import { Injectable } from '@angular/core';
+
+import { HttpClient } from '@angular/common/http';
+import { Liste } from 'src/model/liste';
+import { Guid } from 'guid-typescript';
 import { DataHttpService } from 'src/services/data-http.service';
+import { DataService } from 'src/services/data.service';
 import { MessageService } from 'primeng/components/common/messageservice';
-import { DataDurService } from 'src/services/data-dur.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataHttpCacheService extends DataHttpService {
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+  }
+
+  getListes(): Promise<Liste[]> {
+    var resultat = super.getListes().then(r => {
+      localStorage.setItem('listes', JSON.stringify(r));
+      return r;
+    });
+    resultat.catch(() => {
+      var listeEnJson = localStorage.getItem('listes');
+      var listeObjects = JSON.parse(listeEnJson);
+      var listeListes = listeObjects.map(o => {
+        var l = new Liste(o);
+        l.id = Guid.parse(o.id.value);
+        return l;
+      });
+      return listeListes;
+    });
+    return resultat;
+  }
+}
+
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -9,9 +41,10 @@ import { DataDurService } from 'src/services/data-dur.service';
 
 export const environment = {
   production: false,
-  appName: 'Shopping liste (dev)',serviceUrl:'http://localhost:4201',
-  providers:[
-    { provide: DataService, useClass: DataDurService },
+  appName: 'Shopping liste (dev)',
+  serviceUrl: 'http://localhost:4201',
+  providers: [
+    { provide: DataService, useClass: DataHttpCacheService },
     MessageService
   ]
 };
