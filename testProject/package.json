@@ -15,6 +15,9 @@
   "dependencies": {
     "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-device-orientation": "^2.0.1",
     "cordova-windows": "^7.0.0"
   },
   "devDependencies": {
@@ -22,7 +25,10 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-device-orientation": {}
     },
     "platforms": [
       "browser",

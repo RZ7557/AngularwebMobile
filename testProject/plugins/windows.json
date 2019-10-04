@@ -9,6 +9,15 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "HelloCordova"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "HelloCordova"
+    },
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "HelloCordova"
+    },
+    "cordova-plugin-device-orientation": {
+      "PACKAGE_NAME": "HelloCordova"
     }
   },
   "dependent_plugins": {}
