@@ -15,6 +15,7 @@ import { DataDurService } from 'src/services/data-dur.service';
 import { DataService } from 'src/services/data.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { DataHttpService } from 'src/services/data-http.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,7 @@ import { DataHttpService } from 'src/services/data-http.service';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [
-    { provide: DataService, useClass: DataHttpService },
-    MessageService
-  ],
+  providers: environment.providers,
   bootstrap: [AppComponent]
 })
 export class AppModule {}
