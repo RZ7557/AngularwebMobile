@@ -18,6 +18,9 @@
     },
     "cordova-plugin-device-orientation": {
       "PACKAGE_NAME": "HelloCordova"
+    },
+    "cordova-plugin-magnetometer": {
+      "PACKAGE_NAME": "HelloCordova"
     }
   },
   "dependent_plugins": {}

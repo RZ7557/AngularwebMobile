@@ -18,6 +18,7 @@
     "cordova-plugin-battery-status": "^2.0.3",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-device-orientation": "^2.0.1",
+    "cordova-plugin-magnetometer": "^1.0.0",
     "cordova-windows": "^7.0.0"
   },
   "devDependencies": {
@@ -28,7 +29,8 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-battery-status": {},
-      "cordova-plugin-device-orientation": {}
+      "cordova-plugin-device-orientation": {},
+      "cordova-plugin-magnetometer": {}
     },
     "platforms": [
       "browser",

@@ -37,5 +37,12 @@
 <div class="container">
   <router-outlet></router-outlet>
 </div>
-Battery : {{ batteryStatus }}
+
+Battery : {{ batteryStatus }} X : {{ reading.x }}, Y:{{ reading.y }}, Z:{{
+  reading.z
+}}, magnitude :{{ reading.magnitude }}
+<div
+  style="width:3em;height: 0.2em;background:red;"
+  [style.transform]="'rotate(' + reading.magnitude + 'deg)'"
+></div>
 <p-toast [style]="{ marginTop: '80px' }"></p-toast>

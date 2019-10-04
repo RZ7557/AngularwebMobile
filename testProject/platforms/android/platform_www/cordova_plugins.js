@@ -39,12 +39,21 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "navigator.compass"
       ]
+    },
+    {
+      "id": "cordova-plugin-magnetometer.main",
+      "file": "plugins/cordova-plugin-magnetometer/www/magnetometer.js",
+      "pluginId": "cordova-plugin-magnetometer",
+      "clobbers": [
+        "cordova.plugins.magnetometer"
+      ]
     }
   ];
   module.exports.metadata = {
     "cordova-plugin-whitelist": "1.3.4",
     "cordova-plugin-device": "2.0.3",
     "cordova-plugin-battery-status": "2.0.3",
-    "cordova-plugin-device-orientation": "2.0.1"
+    "cordova-plugin-device-orientation": "2.0.1",
+    "cordova-plugin-magnetometer": "1.0.0"
   };
 });
