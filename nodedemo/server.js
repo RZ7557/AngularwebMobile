@@ -46,6 +46,12 @@ var cors_1 = __importDefault(require("cors"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var app = express_1["default"]();
 var service = new data_dur_service_1.DataDurService();
+app.use(function (req, res, next) {
+    console.log('Requete ' + req.method + ' sur url : ' + req.url);
+    next();
+    console.log('Fin de Requete sur url : ' + req.url);
+});
+app.use(cors_1["default"]({ origin: 'http://localhost:4200' }));
 app.use(cors_1["default"]({ origin: 'http://localhost:4200' }));
 // Liste les listes
 app.get('/liste', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {

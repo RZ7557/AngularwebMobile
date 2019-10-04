@@ -6,6 +6,12 @@ import bodyParser from 'body-parser';
 const app = express();
 
 const service = new DataDurService();
+app.use((req, res, next) => {
+  console.log('Requete ' + req.method + ' sur url : ' + req.url);
+  next();
+  console.log('Fin de Requete sur url : ' + req.url);
+});
+app.use(cors({ origin: 'http://localhost:4200' }));
 
 app.use(cors({ origin: 'http://localhost:4200' }));
 
