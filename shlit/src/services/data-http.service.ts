@@ -57,7 +57,7 @@ export class DataHttpService extends DataService {
     return (
       this.httpClient
         // Requete vers le serveur
-        .get<any>(`${environment}/liste/${id.toString()}`)
+        .get<any>(`${environment.serviceUrl}/liste/${id.toString()}`)
         // On obtient la promesse
         .toPromise()
         // On transforme l'objet recu

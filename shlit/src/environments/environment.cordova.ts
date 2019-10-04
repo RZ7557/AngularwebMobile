@@ -9,9 +9,10 @@ import { DataDurService } from 'src/services/data-dur.service';
 
 export const environment = {
   production: false,
-  appName: 'Shopping liste (dev)',serviceUrl:'http://localhost:4201',
+  appName: 'Shopping liste',
+  serviceUrl: 'http://10.0.2.2:4201',
   providers:[
-    { provide: DataService, useClass: DataDurService },
+    { provide: DataService, useClass: DataHttpService },
     MessageService
   ]
 };
